@@ -1,10 +1,9 @@
-import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import style from "./style";
 
-function Card() {
+function Card({ children, otherStyles }) {
   return (
-    <View></View>
+    <View style={{ ...style.container, ...otherStyles }}>{children}</View>
   );
 }
 

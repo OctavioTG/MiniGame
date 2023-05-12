@@ -8,6 +8,8 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import Input from "../../components/Input";
+import Card from "../../components/Card";
+import style from "./styles";
 
 function StartGame({ onStartGame }) {
   const [value, setValue] = useState("");
@@ -26,7 +28,7 @@ function StartGame({ onStartGame }) {
   const confirmBtn = () => {
     const newValue = parseInt(value);
     if (isNaN(newValue) || newValue <= 0) return;
-    
+
     setConfirm(true);
     setSelecNumber(newValue);
     setValue("");
@@ -36,31 +38,36 @@ function StartGame({ onStartGame }) {
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={"padding"}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View>
-          <Text>Elija un N°</Text>
-          <Input
-            blurOnSubmit
-            autoCapitalize="none"
-            autoCorrect={false}
-            keyboardType="numeric"
-            maxLength={2}
-            placeholder="Escriba su N°..."
-            value={value}
-            onChangeText={handleInput}
-          />
-          <View>
+          <Card>
+            <Text style={style.text}>Elija un N°</Text>
+            <Input
+              blurOnSubmit
+              autoCapitalize="none"
+              autoCorrect={false}
+              keyboardType="numeric"
+              maxLength={2}
+              placeholder="Escriba su N°..."
+              value={value}
+              onChangeText={handleInput}
+            />
             <View>
-              <Button title="Limpiar" onPress={cleanInput} />
+              <View style={style.btnCont}>
+                <Button title="Limpiar" onPress={cleanInput} />
+                <Button title="Confirmar" onPress={confirmBtn} />
+              </View>
             </View>
-            <View>
-              <Button title="Confirmar" onPress={confirmBtn} />
-            </View>
-          </View>
+          </Card>
           {confirm && (
             <View>
-              <Text>Tu N° es: {selecNumber} </Text>
-              <View>
-                <Button title="Start Game" onPress={() => onStartGame(selecNumber)}></Button>
+              <Card otherStyles={style.container}>
+              <Text style={style.text}>Tu N° es: {selecNumber} </Text>
+              <View style={style.btnCont}>
+                <Button
+                  title="Start Game"
+                  onPress={() => onStartGame(selecNumber)}
+                ></Button>
               </View>
+              </Card>
             </View>
           )}
         </View>

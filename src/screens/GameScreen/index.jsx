@@ -1,5 +1,7 @@
 import { View, Text, Button } from "react-native";
 import { useEffect, useState } from "react";
+import Card from "../../components/Card";
+import style from "./style";
 
 function GameScreen() {
   const [currentGuess, setCurrentGuess] = useState()
@@ -9,12 +11,12 @@ function GameScreen() {
   }, [])
   
   return (
-    <View>
-      <Text>El openente supone que es: {currentGuess} </Text>
-      <View>
+    <View style={style.container}>
+      <Text style={style.text}>El openente supone que es: {currentGuess} </Text>
+      <Card otherStyles={style.btnCont}>
         <Button title="Menor" />
         <Button title="Mayor" />
-      </View>
+      </Card>
     </View>
   );
 }

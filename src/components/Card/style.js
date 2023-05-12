@@ -1,16 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
-  header: {
-    backgroundColor: "grey",
-    height: 90,
-    paddingTop: 35,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 22,
-  },
+  container: {
+    justifyContent: 'center',
+    padding: 20,
+    margin: 30,
+    backgroundColor: '##1D8A99',
+  }
 });
 
 export default style;
